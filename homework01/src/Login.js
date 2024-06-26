@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Test() {
+export default function Login() {
   return (
     <div>
       <div class="h-screen w-screen flex justify-center items-center dark:bg-gray-900">
