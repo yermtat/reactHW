@@ -8,7 +8,6 @@ export default function WeatherReport() {
   const city = useRef();
   const countryCode = useRef();
   const [sunTime, setSunTime] = useState();
-  const [isDark, setIsDark] = useState(false);
 
   async function weatherFetch() {
     let uri;
@@ -48,39 +47,9 @@ export default function WeatherReport() {
     }
   }
 
-  function timeOpeartion() {
-    try {
-      const sunrise = new Date(data.sys.sunrise * 1000);
-      const sunset = new Date(data.sys.sunset * 1000);
-      const current = Date.now();
-
-      const cityTime = current - (14400 - data.timezone) * 1000;
-
-      if (cityTime > sunrise && cityTime < sunset) setIsDark(false);
-      else if (cityTime < sunrise || cityTime > sunset) setIsDark(true);
-
-      setSunTime({
-        sunriseTime: sunrise.toLocaleTimeString(),
-        sunsetTime: sunset.toLocaleTimeString(),
-        date: new Date(data.dt * 1000).toLocaleDateString(),
-        currentTime: current.toLocaleTimeString(),
-      });
-    } catch {}
-  }
-
   function handleClick() {
     weatherFetch();
   }
-
-  // function renderImage() {
-  //   const cityTime = Date.now() / 1000 - 14400 + data.timezone;
-
-  //   if (cityTime > data.sys.sunrise && cityTime < data.sys.sunset) {
-  //     return <img src={Sun} />;
-  //   } else if (cityTime < data.sys.sunrise || cityTime > data.sys.sunset) {
-  //     return <img src={Moon} />;
-  //   }
-  // }
 
   function renderImage() {
     if (!sunTime.isDark) {
