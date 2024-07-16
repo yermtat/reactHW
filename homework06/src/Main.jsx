@@ -1,10 +1,23 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { items, categories } from "./Items";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Main() {
   const [cardItems, setCardItems] = useState(items);
-  const selectedCategory = useRef();
+  // const selectedCat = useRef();
+  const [selectedCat, setSelectedCat] = useState("all");
+
+  useEffect(() => {
+    if (selectedCat == "all") setCardItems(items);
+    else setCardItems(items.filter((x) => x.category == selectedCat));
+  }, [selectedCat]);
+
+  const navigate = useNavigate();
+
+  const navigateTo = (path) => {
+    navigate(path);
+  };
 
   return (
     <div>
@@ -20,15 +33,15 @@ export default function Main() {
         <select
           id="category"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          ref={selectedCategory}
+          // ref={selectedCat}
+          defaultValue={selectedCat}
+          onChange={(event) => setSelectedCat(event.target.value)}
         >
-          <option value="all" selected>
-            All
-          </option>
+          <option value="all">All</option>
           <option value={categories[0]}>{categories[0]}</option>
           <option value={categories[1]}>{categories[1]}</option>
           <option value={categories[2]}>{categories[2]}</option>
-          <option value={categories[3]}>{categories[4]}</option>
+          <option value={categories[3]}>{categories[3]}</option>
         </select>
       </form>
 
@@ -45,6 +58,15 @@ export default function Main() {
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">{x.name}</div>
                   <p class="text-gray-700 text-base">{x.price}</p>
+                </div>
+
+                <div class="flex justify-center m-10">
+                  <button
+                    class="bg-blue-200 border border-green-400 rounded-lg"
+                    onClick={""}
+                  >
+                    More
+                  </button>
                 </div>
               </div>
             </li>
