@@ -3,6 +3,8 @@ import ItemCard from "./ItemCard";
 import NewsPage from "./NewsPage";
 import About from "./About";
 import Main from "./Main";
+import { loader as itemLoader } from "./ItemCard";
+import { loader as newsLoader } from "./NewsPage";
 
 const homeChidren = [
   {
@@ -10,12 +12,14 @@ const homeChidren = [
     element: <Main />,
   },
   {
-    path: "/home/:itemId",
+    path: "itemscard/:itemId",
     element: <ItemCard />,
+    loader: itemLoader,
   },
   {
-    path: "newspage",
+    path: "newspage/:newsId",
     element: <NewsPage />,
+    loader: newsLoader,
   },
   {
     path: "main",

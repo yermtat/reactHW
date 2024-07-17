@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { items, categories } from "./Items";
+import { items, categories, news } from "./Items";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -45,7 +45,7 @@ export default function Main() {
         </select>
       </form>
 
-      <div class="flex justify-center w-screen h-screen m-10">
+      <div class="flex justify-center w-screen h-fit-content m-10">
         <ul class="flex">
           {cardItems.map((x) => (
             <li class="m-10 size-30">
@@ -57,18 +57,34 @@ export default function Main() {
                 />
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">{x.name}</div>
-                  <p class="text-gray-700 text-base">{x.price}</p>
+                  <p class="text-gray-700 text-base">Price: ${x.price}</p>
                 </div>
 
                 <div class="flex justify-center m-10">
                   <button
-                    class="bg-blue-200 border border-green-400 rounded-lg"
-                    onClick={""}
+                    class="bg-blue-200 border-7 border-green-400 lg:rounded-xl w-24 h-10 hover:text-blue-600 hover:bg-gray-200"
+                    onClick={() => navigateTo(`/home/itemscard/${x.id}`)}
                   >
                     More
                   </button>
                 </div>
               </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="flex justify-center w-screen h-screen m-10">
+        <ul>
+          {news.map((x) => (
+            <li>
+              <h1 className="font-bold text-lg">{x.title}</h1>
+              <button
+                class="bg-blue-200 border-7 border-green-400 lg:rounded-xl w-24 h-10 hover:text-blue-600 hover:bg-gray-200"
+                onClick={() => navigateTo(`/home/newspage/${x.id}`)}
+              >
+                More
+              </button>
             </li>
           ))}
         </ul>

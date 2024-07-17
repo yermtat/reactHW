@@ -69,3 +69,28 @@ export const items = [
     id: "i6",
   },
 ];
+
+export function getItem(id) {
+  return items.find((x) => x.id == id);
+}
+
+export const news = [
+  {
+    title: "news title 1",
+    text: "some text",
+    date: Date().now,
+    tags: ["some tags1", "some tags 2"],
+    id: "news1",
+  },
+  {
+    title: "news title 2",
+    text: "some text",
+    date: Date().now,
+    tags: ["some tags1", "some tags 2"],
+    id: "news2",
+  },
+];
+
+export function getNews(id) {
+  return news.find((x) => x.id == id);
+}

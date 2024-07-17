@@ -7,7 +7,6 @@ export default function Home() {
     <div>
       <Navbar />
       <Outlet />
-      <h1>Hello, world</h1>
     </div>
   );
 }
