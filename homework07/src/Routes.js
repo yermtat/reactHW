@@ -15,3 +15,5 @@ const routes = [
     element: <Edit />,
   },
 ];
+
+export default routes;
